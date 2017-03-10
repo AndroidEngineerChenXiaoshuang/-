@@ -1,15 +1,21 @@
 package com.example.administrator.userwirtemoney;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,19 +23,23 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.administrator.userwirtemoney.Application.MyApplication;
+import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.Util.HttpUtilRequest;
+import com.example.administrator.userwirtemoney.Util.PhtoUriSax;
 import com.example.administrator.userwirtemoney.adapter.RecyclerViewAdapter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -49,7 +59,13 @@ public class MainActivity extends AppCompatActivity {
     //该用户偏好用于保存用户自己的图片路径
     public static final String IMG_URI = "img_uri";
 
+    //该用户偏好用于保存用户相册中的照片真实地址
+    public static final String IMG_PATH = "img_path";
+
+    //打开相机返回的数据
     public static final int TAKE_PHOTO = 1;
+
+    public static final int CHOOSE_PHOTO = 2;
 
     public SharedPreferences sharedPreferences;
 
@@ -60,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
     //用于保存文件真实路径的uri
     public Uri image_uri;
+
+    //用于保存图片文件的真实路径
+    public String imagePath;
 
 
     @Override
@@ -86,10 +105,14 @@ public class MainActivity extends AppCompatActivity {
         if(sharedPreferences.getString(IMG_URI,null)!=null){
             image_uri = Uri.parse(sharedPreferences.getString(IMG_URI,null));
         }
+        imagePath = sharedPreferences.getString(IMG_PATH,null);
+
         if(img_url!=null){
             Glide.with(MainActivity.this).load(img_url).into(title_img);
         }else if(image_uri!=null){
             Glide.with(MainActivity.this).load(image_uri).into(title_img);
+        }else if(imagePath!=null){
+            Glide.with(MainActivity.this).load(imagePath).into(title_img);
         }else{
             HttpUtilRequest.sendRequset(BIYINGIMG_URI, new Callback() {
                 @Override
@@ -134,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setNegativeButton("打开相册", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        openUserPhotoes();
                     }
                 });
                 builder.setNeutralButton("拍照", new DialogInterface.OnClickListener() {
@@ -145,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                     }
                 });
                 builder.setMessage("选择相册或者是拍照来设置您的主题");
@@ -183,6 +208,36 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void openUserPhotoes(){
+        if(ContextCompat.checkSelfPermission(MyApplication.getmContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        }else{
+            startopen();
+        }
+    }
+
+
+    public void startopen(){
+        Intent intent = new Intent("android.intent.action.GET_CONTENT");
+        intent.setType("image/*");
+        startActivityForResult(intent,CHOOSE_PHOTO);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1:
+                if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    startopen();
+                }else{
+                    Toast.makeText(MyApplication.getmContext(),"您必须同意权限才能够访问相册",Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
@@ -190,11 +245,12 @@ public class MainActivity extends AppCompatActivity {
                 if(resultCode==RESULT_OK){
                     if(sharedPreferences.getString(IMG_URL,null)!=null){
                         editor.putString(IMG_URL,null);
-                        editor.putString(IMG_URI,image_uri.toString());
-                        editor.apply();
                     }
-
-                    //为什么图片显示的还是以前的那张呢?
+                    if(sharedPreferences.getString(IMG_PATH,null)!=null){
+                        editor.putString(IMG_PATH,null);
+                    }
+                    editor.putString(IMG_URI,image_uri.toString());
+                    editor.apply();
                     try {
                         Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(image_uri));
                         title_img.setImageBitmap(bitmap);
@@ -204,9 +260,40 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 break;
+            case CHOOSE_PHOTO:
+                if(resultCode==RESULT_OK){
+                    if(Build.VERSION.SDK_INT>=19){
+                        PhtoUriSax.startSaxUri(new JamInterface.photoInterface(){
+                            @Override
+                            public void finshed(String filePath) {
+                                writeBitmap(filePath);
+                            }
+                        },data);
+                    }else{
+                        PhtoUriSax.startImageUri(data, new JamInterface.photoInterface() {
+                            @Override
+                            public void finshed(String filePath) {
+                                writeBitmap(filePath);
+                            }
+                        });
+                    }
+                }
+                break;
             default:
 
                 break;
         }
+    }
+    public void writeBitmap(String imagePath){
+        Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+        title_img.setImageBitmap(bitmap);
+        editor.putString(IMG_PATH,imagePath);
+        if(sharedPreferences.getString(IMG_URL,null)!=null){
+            editor.putString(IMG_PATH,null);
+        }
+        if(sharedPreferences.getString(IMG_URI,null)!=null){
+            editor.putString(IMG_URI,null);
+        }
+        editor.apply();
     }
 }
