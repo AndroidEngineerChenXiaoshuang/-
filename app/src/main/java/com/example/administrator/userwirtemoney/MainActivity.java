@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -91,13 +92,8 @@ public class MainActivity extends AppCompatActivity {
         if(actionBar!=null){
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.daohang);
-            setTitle("账单助手");
+            setTitle(null);
         }
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter();
-        recyclerView.setAdapter(recyclerViewAdapter);
         title_img = (ImageView) findViewById(R.id.titleImage);
         sharedPreferences = getSharedPreferences("user_content", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
