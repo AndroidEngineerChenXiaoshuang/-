@@ -48,7 +48,6 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     public Toolbar toolbar;
-    public RecyclerView recyclerView;
     public ImageView title_img;
 
     //获取郭霖大神提供的免费api接口获得必应的图片url
@@ -80,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
     //用于保存图片文件的真实路径
     public String imagePath;
+
+    public RecyclerView recyclerView ;
+
+    public RecyclerViewAdapter recyclerViewAdapter;
 
 
     @Override
@@ -135,6 +138,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerViewAdapter = new RecyclerViewAdapter();
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(recyclerViewAdapter);
 
     }
 
@@ -175,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

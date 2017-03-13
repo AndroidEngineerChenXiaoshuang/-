@@ -29,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter{
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.recycler_item,parent,false));
+        return new MyViewHolder(LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.recycler_one,parent,false));
     }
 
 
@@ -40,6 +40,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 2;
     }
 }

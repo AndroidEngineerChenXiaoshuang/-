@@ -7,44 +7,41 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/line3">
+        android:id="@+id/line8">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lines3">
+            android:id="@+id/lines8">
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:id="@+id/cunqianimg"
                 android:scaleType="centerCrop"
-                android:id="@+id/typeImg"
-                android:src="@drawable/yule"
+                android:src="@drawable/cunqian"
                 android:layout_centerHorizontal="true"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="娱乐"
+                android:text="日常生活"
+                android:textSize="16dp"
+                android:textColor="#8d8d8d"
+                android:layout_marginRight="5dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/text_cunqian"
+                android:layout_toLeftOf="@+id/cunqianimg"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12000.00"
                 android:textSize="16dp"
                 android:layout_centerVertical="true"
-                android:textColor="#8d8d8d"
-                android:id="@+id/text_yule"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/typeImg"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="650.00"
-                android:textSize="15dp"
-                android:id="@+id/yuleMoney"
-                android:layout_centerVertical="true"
-                android:textColor="#8d8d8d"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/text_yule"/>
+                android:textColor="#5a5a5a"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/text_cunqian"
+                android:id="@+id/cunqianMoney" />
         </RelativeLayout>
-        <View
-            android:layout_below="@id/lines3"
-            android:layout_width="1dp"
-            android:layout_height="50dp"
-            android:background="#8d8d8d"
-            android:layout_centerHorizontal="true"/>
+
     </RelativeLayout>
 </LinearLayout>
