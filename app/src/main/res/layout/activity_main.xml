@@ -50,6 +50,7 @@
           app:layout_anchorGravity="bottom|center"
           app:layout_anchor="@id/appBar"
           app:elevation="0dp"
+          android:id="@+id/add_info"
           android:layout_margin="16dp"
           android:src="@drawable/add"/>
 

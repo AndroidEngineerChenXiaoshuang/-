@@ -2,12 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/line3">
+        android:id="@+id/centerInfo">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
                 android:text="娱乐"
                 android:textSize="16dp"
                 android:layout_centerVertical="true"
-                android:textColor="#8d8d8d"
+                android:textColor="#ababab"
                 android:id="@+id/text_yule"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/typeImg"/>
@@ -34,9 +34,9 @@
                 android:layout_height="wrap_content"
                 android:text="650.00"
                 android:textSize="15dp"
-                android:id="@+id/yuleMoney"
+                android:id="@+id/money"
                 android:layout_centerVertical="true"
-                android:textColor="#8d8d8d"
+                android:textColor="#ababab"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/text_yule"/>
         </RelativeLayout>
@@ -44,7 +44,7 @@
             android:layout_below="@id/lines3"
             android:layout_width="1dp"
             android:layout_height="50dp"
-            android:background="#8d8d8d"
+            android:background="#ababab"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 </LinearLayout>
