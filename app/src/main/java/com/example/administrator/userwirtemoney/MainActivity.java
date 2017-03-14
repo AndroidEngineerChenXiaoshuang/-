@@ -30,19 +30,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.administrator.userwirtemoney.Application.MyApplication;
 import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.Util.HttpUtilRequest;
 import com.example.administrator.userwirtemoney.Util.PhtoUriSax;
 import com.example.administrator.userwirtemoney.adapter.RecyclerViewAdapter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -87,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
     public RecyclerViewAdapter recyclerViewAdapter;
 
     public FloatingActionButton addButton;
+
+    public Intent startWriteMoneyActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,11 +144,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewAdapter = new RecyclerViewAdapter();
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(recyclerViewAdapter);
+        startWriteMoneyActivity = new Intent(MainActivity.this,WriteMoneyActivity.class);
         addButton = (FloatingActionButton) findViewById(R.id.add_info);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(startWriteMoneyActivity);
             }
         });
     }

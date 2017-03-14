@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:paddingTop="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_height="match_parent">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="3-14"
+        android:id="@+id/openDate"
+        android:textColor="#757575"
+        android:textStyle="italic"
+        android:background="@drawable/bg_login"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="备注"
+        android:id="@+id/the_money_info"
+        android:textColor="#757575"
+        android:background="@drawable/bg_login"/>
+</LinearLayout>
