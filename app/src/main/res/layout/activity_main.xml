@@ -44,6 +44,15 @@
 
       </android.support.design.widget.AppBarLayout>
 
+
+
+      <android.support.v7.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          android:id="@+id/recycler">
+      </android.support.v7.widget.RecyclerView>
+
       <android.support.design.widget.FloatingActionButton
           android:layout_width="120dp"
           android:layout_height="120dp"
@@ -53,13 +62,6 @@
           android:id="@+id/add_info"
           android:layout_margin="16dp"
           android:src="@drawable/add"/>
-
-      <android.support.v7.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          app:layout_behavior="@string/appbar_scrolling_view_behavior"
-          android:id="@+id/recycler">
-      </android.support.v7.widget.RecyclerView>
 
 
    </android.support.design.widget.CoordinatorLayout>

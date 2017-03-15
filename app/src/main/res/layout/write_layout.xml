@@ -17,6 +17,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="0"
+        android:id="@+id/number_text"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"/>
     <View
@@ -141,6 +142,7 @@
                 android:layout_height="0dp"
                 android:orientation="horizontal"
                 android:layout_weight="1">
+
                 <Button
                     android:id="@+id/number_dian"
                     android:layout_marginRight="5dp"
@@ -150,6 +152,7 @@
                     android:text="."
                     android:textSize="20dp"
                     android:background="@drawable/bg_login2"/>
+
                 <Button
                     android:id="@+id/number_zero"
                     android:layout_width="0dp"
