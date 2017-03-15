@@ -13,12 +13,11 @@
         android:text="3-14"
         android:id="@+id/openDate"
         android:textColor="#757575"
-        android:textStyle="italic"
         android:background="@drawable/bg_login"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:text="备注"
         android:id="@+id/the_money_info"
         android:textColor="#757575"
