@@ -1,7 +1,13 @@
 package com.example.administrator.userwirtemoney.Util;
 
+import android.support.v4.widget.PopupWindowCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.administrator.userwirtemoney.Application.MyApplication;
+import com.example.administrator.userwirtemoney.MainActivity;
 import com.example.administrator.userwirtemoney.R;
 
 
@@ -90,7 +96,7 @@ public class NumberThink {
                 }
                 break;
             case R.id.number_dian:
-                if(number_info>0&&DIAN_FALG){
+                if(DIAN_FALG){
                     DIAN_FALG = false;
                     date_info = number_info+".";
                     numberText.setText(date_info);
@@ -164,14 +170,43 @@ public class NumberThink {
 
     public static long delNumber(TextView numberText){
         long numberInfo = 0;
+        float f = 0;
         if(DIAN_FALG){
             numberInfo = Long.parseLong(numberText.getText().toString());
             numberInfo/=10;
             numberText.setText(numberInfo+"");
         }else{
+            //表示此时的数字后面是两位小数
+            if(index==3){
+                f = Float.parseFloat(numberText.getText().toString());
+                f*=100;
+                numberInfo = (long) f;
+                numberInfo/=10;
+                f = numberInfo;
+                f/=10;
+                numberText.setText(f+"");
+                date_info = numberText.getText().toString();
+                index--;
+                numberInfo = 0;
+            }else if(index==2){
+                f = Float.parseFloat(numberText.getText().toString());
+                f*=10;
+                numberInfo = (long) f;
+                numberInfo/=10;
+                date_info = numberInfo+".";
+                numberInfo = 0;
+                numberText.setText(date_info);
+                index--;
+            }else if(index == 1){
+                numberInfo = Long.parseLong(numberText.getText().toString().replace(".",""));
+                numberText.setText(numberInfo+"");
+                DIAN_FALG = true;
 
+            }
         }
         return numberInfo;
     }
+
+
 
 }
