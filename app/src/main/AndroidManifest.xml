@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WriteMoneyActivity"/>
+        <activity android:name=".WriteMoneyActivity"
+            android:theme="@style/statusBar"/>
 
         <provider
             android:authorities="com.exaple.administrator.userwirtemoney.fileProvier"

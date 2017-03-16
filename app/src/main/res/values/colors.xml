@@ -5,4 +5,5 @@
     <color name="colorAccent">#00ade2</color>
     <color name="btnColor">#f4f4f4</color>
     <color name="numberBtnColor">#777777</color>
+    <color name="titleColor">#96000000</color>
 </resources>

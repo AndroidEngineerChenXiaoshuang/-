@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.userwirtemoney.Util.NumberThink;
+import com.example.administrator.userwirtemoney.Util.openDatepopUpWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
 public class WriteMoneyActivity extends AppCompatActivity implements View.OnClickListener{
 
     public List<Button> buttons_number;
+    public Button openDate_btn;
     public RelativeLayout backLayout;
     public TextView numberText ;
     public long number_info =0;
@@ -45,6 +47,8 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
         buttons_number.add((Button) findViewById(R.id.number_line));
         buttons_number.add((Button) findViewById(R.id.number_zero));
         buttons_number.add((Button) findViewById(R.id.number_dian));
+        openDate_btn = (Button) findViewById(R.id.openDate);
+        openDate_btn.setOnClickListener(this);
         numberText = (TextView) findViewById(R.id.number_text);
         backLayout = (RelativeLayout) findViewById(R.id.back_btn);
         for(Button button:buttons_number){
@@ -55,7 +59,11 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-       number_info = NumberThink.send(v,number_info,numberText);
+        if(v.getId()==R.id.openDate){
+            openDatepopUpWindow.openDate(v,this);
+        }else{
+            number_info = NumberThink.send(v,number_info,numberText);
+        }
     }
 
 

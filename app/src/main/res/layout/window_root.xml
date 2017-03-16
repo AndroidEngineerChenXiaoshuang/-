@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#96000000"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp"
+        android:layout_height="300dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2017年3月16日"
+                    android:textSize="22dp"
+                    android:textColor="#0093dd"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#0093dd"/>
+            <RelativeLayout
+                android:layout_weight="4"
+                android:layout_width="match_parent"
+                android:padding="25dp"
+                android:layout_height="0dp">
+                <include layout="@layout/window_item"/>
+
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="match_parent">
+
+                    <ListView
+                        android:overScrollMode="never"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:divider="#00000000"
+                        android:id="@+id/year"
+                        android:dividerHeight="0dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:scrollbars="none">
+                    </ListView>
+
+                    <ListView
+                        android:overScrollMode="never"
+                        android:layout_marginRight="10dp"
+                        android:dividerHeight="0dp"
+                        android:divider="#00000000"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/month"
+                        android:layout_weight="1"
+                        android:scrollbars="none">
+                    </ListView>
+                    <ListView
+                        android:overScrollMode="never"
+                        android:dividerHeight="0dp"
+                        android:divider="#00000000"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/day"
+                        android:layout_weight="1"
+                        android:scrollbars="none">
+                    </ListView>
+                </LinearLayout>
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#c6c6c6"/>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="0dp">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="取消"
+                    android:id="@+id/dissmms"
+                    android:background="#fff"
+                    android:layout_weight="1"/>
+                <View
+                    android:layout_width="0.2dp"
+                    android:layout_height="match_parent"
+                    android:background="#c6c6c6"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:text="确定"
+                    android:background="#fff"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/sure" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

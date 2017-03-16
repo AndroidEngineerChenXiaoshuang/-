@@ -6,4 +6,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="statusBar" parent="AppTheme">
+        <item name="android:statusBarColor">#000</item>
+    </style>
+    <style name="ContentAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/popupwindow_startanimation</item>
+        <item name="android:windowExitAnimation">@anim/popupwindow_exitanimation</item>
+    </style>
 </resources>
