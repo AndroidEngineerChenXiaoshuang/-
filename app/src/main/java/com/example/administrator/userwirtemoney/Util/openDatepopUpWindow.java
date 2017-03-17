@@ -63,7 +63,7 @@ public class openDatepopUpWindow {
         open.setBackgroundDrawable(new BitmapDrawable());
         open.setOutsideTouchable(false);
         open.showAtLocation(parent, Gravity.CENTER,0,0);
-
+       
         if(Build.VERSION.SDK_INT>=21){
             writeMoneyActivity.getWindow().setStatusBarColor(TITLE_COLOR);
         }
