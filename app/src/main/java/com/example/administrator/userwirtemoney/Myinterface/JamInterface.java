@@ -16,6 +16,11 @@ public class JamInterface {
     public interface photoInterface{
         void finshed(String filePath);
     }
+
+    public interface recyclerOnclick{
+        void getInfo(int position,View v);
+    }
+
 }
 
 

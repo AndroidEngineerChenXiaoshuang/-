@@ -2,15 +2,14 @@ package com.example.administrator.userwirtemoney;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.example.administrator.userwirtemoney.Util.NumberThink;
 import com.example.administrator.userwirtemoney.Util.openDatepopUpWindow;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
     public TextView numberText ;
     public long number_info =0;
     public int count = 0;
+    public ViewPager viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.write_money);
         buttons_number = new ArrayList<>();
         iniDate();
+
 
     }
     public void iniDate(){
@@ -55,6 +56,8 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
             button.setOnClickListener(WriteMoneyActivity.this);
         }
         backLayout.setOnClickListener(this);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
     }
 
     @Override

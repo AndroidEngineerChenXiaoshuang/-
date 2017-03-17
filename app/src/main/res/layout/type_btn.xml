@@ -10,7 +10,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:text="3-14"
+        android:text="2013-1-1"
         android:id="@+id/openDate"
         android:textColor="#757575"
         android:background="@drawable/bg_login"/>
