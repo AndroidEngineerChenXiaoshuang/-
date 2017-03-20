@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.administrator.userwirtemoney.Util.NumberThink;
@@ -28,6 +29,10 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
     public long number_info =0;
     public int count = 0;
     public ViewPager viewPager;
+    public ImageView dian_one;
+    public ImageView dian_two;
+    public ImageView dian_three;
+    public ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,11 +62,14 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
         for(Button button:buttons_number){
             button.setOnClickListener(WriteMoneyActivity.this);
         }
+        dian_one = (ImageView) findViewById(R.id.selected1);
+        dian_two = (ImageView) findViewById(R.id.selected2);
+        dian_three = (ImageView) findViewById(R.id.selected3);
         backLayout.setOnClickListener(this);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter();
+        viewPagerAdapter = new ViewPagerAdapter();
         viewPager.setAdapter(viewPagerAdapter);
-
+        viewPager.addOnPageChangeListener(new onPagerListener());
     }
 
     @Override
@@ -70,6 +78,33 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
             openDatepopUpWindow.openDate(v,this);
         }else{
             number_info = NumberThink.send(v,number_info,numberText);
+        }
+    }
+
+    public class onPagerListener implements ViewPager.OnPageChangeListener{
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            dian_one.setImageResource(R.drawable.dian2);
+            dian_two.setImageResource(R.drawable.dian2);
+            dian_three.setImageResource(R.drawable.dian2);
+            if(position == 0){
+                dian_one.setImageResource(R.drawable.dian);
+            }else if(position == 1){
+                dian_two.setImageResource(R.drawable.dian);
+            }else{
+                dian_three.setImageResource(R.drawable.dian);
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
         }
     }
 

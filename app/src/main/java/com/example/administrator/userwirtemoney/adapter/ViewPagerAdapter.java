@@ -2,11 +2,14 @@ package com.example.administrator.userwirtemoney.adapter;
 
 import android.support.v4.util.ArrayMap;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.administrator.userwirtemoney.Application.MyApplication;
 import com.example.administrator.userwirtemoney.R;

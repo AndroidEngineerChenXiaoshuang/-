@@ -21,9 +21,39 @@
 
         <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:id="@+id/viewPager">
         </android.support.v4.view.ViewPager>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="0.5">
+           <LinearLayout
+               android:layout_alignParentTop="true"
+               android:layout_centerHorizontal="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <ImageView
+                   android:layout_width="13dp"
+                   android:layout_height="13dp"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/dian"
+                   android:id="@+id/selected1"/>
+               <ImageView
+                   android:id="@+id/selected2"
+                   android:layout_width="13dp"
+                   android:layout_height="13dp"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/dian2"/>
+               <ImageView
+                   android:id="@+id/selected3"
+                   android:layout_width="13dp"
+                   android:layout_height="13dp"
+                   android:src="@drawable/dian2"/>
+
+           </LinearLayout>
+       </RelativeLayout>
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
