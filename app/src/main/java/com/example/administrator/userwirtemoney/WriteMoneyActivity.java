@@ -10,6 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.administrator.userwirtemoney.Util.NumberThink;
 import com.example.administrator.userwirtemoney.Util.openDatepopUpWindow;
+import com.example.administrator.userwirtemoney.adapter.ViewPagerAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +59,8 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
         }
         backLayout.setOnClickListener(this);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter();
+        viewPager.setAdapter(viewPagerAdapter);
 
     }
 

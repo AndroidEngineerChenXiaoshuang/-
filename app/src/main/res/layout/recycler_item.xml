@@ -17,7 +17,6 @@
                 android:layout_height="35dp"
                 android:scaleType="centerCrop"
                 android:id="@+id/typeImg"
-                android:src="@drawable/yule"
                 android:layout_centerHorizontal="true"/>
             <TextView
                 android:layout_width="wrap_content"

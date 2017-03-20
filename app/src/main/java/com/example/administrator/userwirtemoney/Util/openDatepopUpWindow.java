@@ -31,11 +31,14 @@ public class openDatepopUpWindow {
     private static PopupWindow open;
     private static final int TITLE_COLOR = 0x96000000;
     private static final int TITLE_COLOR_HOLT = 0xFF000000;
-    public static String year_text = "2013";
-    public static String month_text = "1";
-    public static String day_text = "1";
+    public static String year_text ;
+    public static String month_text ;
+    public static String day_text ;
 
     public static void openDate(View parent, final WriteMoneyActivity writeMoneyActivity){
+        year_text = "2013";
+        month_text = "1";
+        day_text = "1";
         View root = LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.window_root,null,false);
         final TextView date_text = (TextView) root.findViewById(R.id.date_text);
         final RecyclerView recyclerYear = (RecyclerView) root.findViewById(R.id.year);

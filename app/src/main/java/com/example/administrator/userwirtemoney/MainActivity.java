@@ -139,11 +139,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        recyclerViewAdapter = new RecyclerViewAdapter();
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
         startWriteMoneyActivity = new Intent(MainActivity.this,WriteMoneyActivity.class);
         addButton = (FloatingActionButton) findViewById(R.id.add_info);
         addButton.setOnClickListener(new View.OnClickListener() {
