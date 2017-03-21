@@ -36,6 +36,9 @@ import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.Util.HttpUtilRequest;
 import com.example.administrator.userwirtemoney.Util.PhtoUriSax;
 import com.example.administrator.userwirtemoney.adapter.RecyclerViewAdapter;
+
+import org.litepal.tablemanager.Connector;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Connector.getDatabase();//初始化数据库
         toolbar = (Toolbar) findViewById(R.id.toolbarId);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

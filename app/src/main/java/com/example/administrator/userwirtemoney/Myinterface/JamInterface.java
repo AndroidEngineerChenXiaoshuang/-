@@ -17,9 +17,16 @@ public class JamInterface {
         void finshed(String filePath);
     }
 
+    /**
+     * 该接口是用于回调给外部传递数据给Button
+     */
     public interface recyclerOnclick{
         void getInfo(int position,View v);
     }
+
+    /**
+     *
+     */
 
 }
 

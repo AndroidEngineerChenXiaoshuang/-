@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.example.administrator.userwirtemoney.R;
 
+import org.litepal.LitePalApplication;
+
 /**
  * Created by Administrator on 2017/3/9 0009.
  */
@@ -21,7 +23,11 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
+        LitePalApplication.initialize(mContext);
     }
+
+    public static final int TITLE_COLOR = 0x96000000;
+    public static final int TITLE_COLOR_HOLT = 0xFF000000;
 
     public static Context getmContext(){
         return mContext;

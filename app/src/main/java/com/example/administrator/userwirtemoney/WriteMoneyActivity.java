@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
     public ImageView dian_one;
     public ImageView dian_two;
     public ImageView dian_three;
+    public ImageView dian_four;
     public ViewPagerAdapter viewPagerAdapter;
 
     @Override
@@ -65,9 +67,10 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
         dian_one = (ImageView) findViewById(R.id.selected1);
         dian_two = (ImageView) findViewById(R.id.selected2);
         dian_three = (ImageView) findViewById(R.id.selected3);
+        dian_four = (ImageView) findViewById(R.id.selected4);
         backLayout.setOnClickListener(this);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPagerAdapter = new ViewPagerAdapter();
+        viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(new onPagerListener());
     }
@@ -93,12 +96,15 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
             dian_one.setImageResource(R.drawable.dian2);
             dian_two.setImageResource(R.drawable.dian2);
             dian_three.setImageResource(R.drawable.dian2);
+            dian_four.setImageResource(R.drawable.dian2);
             if(position == 0){
                 dian_one.setImageResource(R.drawable.dian);
             }else if(position == 1){
                 dian_two.setImageResource(R.drawable.dian);
-            }else{
+            }else if(position ==2){
                 dian_three.setImageResource(R.drawable.dian);
+            }else{
+                dian_four.setImageResource(R.drawable.dian);
             }
         }
 

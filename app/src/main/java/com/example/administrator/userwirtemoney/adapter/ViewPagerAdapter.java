@@ -1,23 +1,14 @@
 package com.example.administrator.userwirtemoney.adapter;
 
-import android.support.v4.util.ArrayMap;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
-
 import com.example.administrator.userwirtemoney.Application.MyApplication;
 import com.example.administrator.userwirtemoney.R;
+import com.example.administrator.userwirtemoney.WriteMoneyActivity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/17 0017.
@@ -25,9 +16,15 @@ import java.util.Map;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
+    public WriteMoneyActivity writeMoneyActivity;
+
+    public ViewPagerAdapter(WriteMoneyActivity writeMoneyActivity){
+        this.writeMoneyActivity = writeMoneyActivity;
+    }
+
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -45,8 +42,13 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View root = LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.grid_layout,container,false);
         GridView gridView = (GridView) root.findViewById(R.id.grid);
-        BaseAdapterGrid baseAdapterGrid = new BaseAdapterGrid(position);
-        gridView.setAdapter(baseAdapterGrid);
+        if(position!=3){
+            BaseAdapterGrid baseAdapterGrid = new BaseAdapterGrid(position);
+            gridView.setAdapter(baseAdapterGrid);
+        }else{
+            UserAddClassGridAdapter userAddClassGridAdapter = new UserAddClassGridAdapter(writeMoneyActivity);
+            gridView.setAdapter(userAddClassGridAdapter);
+        }
         container.addView(root);
         return root;
     }

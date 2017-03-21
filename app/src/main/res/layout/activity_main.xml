@@ -58,6 +58,7 @@
           android:layout_height="120dp"
           app:layout_anchorGravity="bottom|center"
           app:layout_anchor="@id/appBar"
+          app:backgroundTint="#fff"
           app:elevation="0dp"
           android:id="@+id/add_info"
           android:layout_margin="16dp"

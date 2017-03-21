@@ -9,7 +9,7 @@
         android:numColumns="5"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:verticalSpacing="20dp"
+        android:verticalSpacing="15dp"
         android:layout_height="match_parent">
     </GridView>
 </LinearLayout>

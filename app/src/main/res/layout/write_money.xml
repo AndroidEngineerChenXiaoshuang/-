@@ -49,6 +49,12 @@
                <ImageView
                    android:id="@+id/selected3"
                    android:layout_width="13dp"
+                   android:layout_marginRight="5dp"
+                   android:layout_height="13dp"
+                   android:src="@drawable/dian2"/>
+               <ImageView
+                   android:id="@+id/selected4"
+                   android:layout_width="13dp"
                    android:layout_height="13dp"
                    android:src="@drawable/dian2"/>
 
@@ -58,6 +64,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/calc"
         android:layout_weight="1">
         <include layout="@layout/write_layout"/>
     </FrameLayout>

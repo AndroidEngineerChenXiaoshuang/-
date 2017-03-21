@@ -82,6 +82,7 @@ public class BaseAdapterGrid extends BaseAdapter {
                 setSelectInfo(root,position,imageView,textView);
             }
         });
+
         return root;
     }
 

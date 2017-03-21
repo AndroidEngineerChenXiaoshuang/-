@@ -29,8 +29,7 @@ import java.util.List;
 public class openDatepopUpWindow {
 
     private static PopupWindow open;
-    private static final int TITLE_COLOR = 0x96000000;
-    private static final int TITLE_COLOR_HOLT = 0xFF000000;
+
     public static String year_text ;
     public static String month_text ;
     public static String day_text ;
@@ -108,18 +107,19 @@ public class openDatepopUpWindow {
         open.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         open.setAnimationStyle(R.style.ContentAnimation);
         open.setBackgroundDrawable(new BitmapDrawable());
-        open.setOutsideTouchable(false);
+        open.setOutsideTouchable(true);
+        open.setFocusable(true);
         open.showAtLocation(parent, Gravity.CENTER,0,0);
 
         if(Build.VERSION.SDK_INT>=21){
-            writeMoneyActivity.getWindow().setStatusBarColor(TITLE_COLOR);
+            writeMoneyActivity.getWindow().setStatusBarColor(MyApplication.TITLE_COLOR);
         }
         root.findViewById(R.id.dissmms).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 open.dismiss();
                 if(Build.VERSION.SDK_INT>=21){
-                    writeMoneyActivity.getWindow().setStatusBarColor(TITLE_COLOR_HOLT);
+                    writeMoneyActivity.getWindow().setStatusBarColor(MyApplication.TITLE_COLOR_HOLT);
                 }
             }
         });
