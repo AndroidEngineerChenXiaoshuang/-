@@ -14,8 +14,8 @@
         <item name="android:windowExitAnimation">@anim/popupwindow_exitanimation</item>
     </style>
     <style name="TestAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:windowEnterAnimation">@anim/test_start</item>
-        <item name="android:windowExitAnimation">@anim/test_exit</item>
+        <item name="android:windowEnterAnimation">@anim/addclass_exitanimation</item>
+        <item name="android:windowExitAnimation">@anim/addclass_startanimation</item>
     </style>
 
 </resources>

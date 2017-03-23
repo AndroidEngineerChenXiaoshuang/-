@@ -6,16 +6,16 @@ import org.litepal.crud.DataSupport;
  * Created by Administrator on 2017/3/21 0021.
  */
 
-public class user_class extends DataSupport {
-    public int id;
+public class userClassInfo extends DataSupport {
+    public int position;
     public String name;
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
-    public int getId() {
-        return id;
+    public int getPosition() {
+        return position;
     }
 
     public void setName(String name) {

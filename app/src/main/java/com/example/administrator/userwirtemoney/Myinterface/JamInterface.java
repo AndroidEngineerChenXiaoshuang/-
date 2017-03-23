@@ -25,9 +25,11 @@ public class JamInterface {
     }
 
     /**
-     *
+     *  该接口是用于通知给UserAddClassAdapter向数据库中插入一条数据
      */
-
+    public interface getClassNameInfo {
+        void getInfo(String info);
+    }
 }
 
 

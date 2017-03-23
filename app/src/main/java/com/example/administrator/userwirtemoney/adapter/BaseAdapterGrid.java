@@ -2,6 +2,7 @@ package com.example.administrator.userwirtemoney.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class BaseAdapterGrid extends BaseAdapter {
     public static final int GRID_ONE = 0;
     public static final int GRID_TWO = 1;
     public static final int GRID_THREE = 2;
+    public static final int GRID_FOUR = 3;
     public int mtype;
     public int isSelected ;
     public int isSelectedType ;
@@ -106,6 +108,12 @@ public class BaseAdapterGrid extends BaseAdapter {
                     img_name.setText(MyApplication.imagesArray_three_name[sharedPreferences.getInt("selected",0)]);
                     img.setBackgroundResource(0);
                     break;
+                case GRID_FOUR:
+//                  Log.v("Jam",sharedPreferences.getInt("selectedType",0)+" "+sharedPreferences.getInt("selected",0));
+                    Log.v("Jam",img_name.getText().toString());
+                    img.setImageResource(R.drawable.custom_categories);
+                    img.setBackgroundResource(0);
+                    break;
             }
         }
         switch (mtype){
@@ -124,6 +132,7 @@ public class BaseAdapterGrid extends BaseAdapter {
                 imageView.setBackgroundResource(R.drawable.gridview_back);
                 textView.setText(MyApplication.imagesArray_three_name[position]);
                 break;
+
         }
 
         MyApplication.setRoot(root);

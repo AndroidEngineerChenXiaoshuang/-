@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import com.example.administrator.userwirtemoney.Application.MyApplication;
+import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.R;
 import com.example.administrator.userwirtemoney.WriteMoneyActivity;
 
@@ -19,8 +21,8 @@ import com.example.administrator.userwirtemoney.WriteMoneyActivity;
 
 public class OpenAddclassName {
 
-    public static void start(View parent, final WriteMoneyActivity writeMoneyActivity){
-        View root = LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.write_classname,null,false);
+    public static void start(View parent, final WriteMoneyActivity writeMoneyActivity, final JamInterface.getClassNameInfo getClassNameInfo){
+        final View root = LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.write_classname,null,false);
         final PopupWindow popupWindow = new PopupWindow(root);
         popupWindow.setAnimationStyle(R.style.TestAnimation);
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -43,6 +45,9 @@ public class OpenAddclassName {
         btn_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText editText = (EditText) root.findViewById(R.id.edit_info);
+                String info = editText.getText().toString();
+                getClassNameInfo.getInfo(info);
                 popupWindow.dismiss();
             }
         });

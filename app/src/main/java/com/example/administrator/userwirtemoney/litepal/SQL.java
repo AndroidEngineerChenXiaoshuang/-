@@ -5,5 +5,5 @@ package com.example.administrator.userwirtemoney.litepal;
  */
 
 public class SQL {
-    public static final String SELECT_ALL = "select * from user_class";
+    public static final String SELECT_ALL = "select * from userClassInfo";
 }
