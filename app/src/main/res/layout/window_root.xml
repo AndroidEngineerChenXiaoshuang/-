@@ -12,6 +12,7 @@
         android:layout_centerInParent="true"
         app:cardCornerRadius="5dp"
         app:cardElevation="10dp"
+        app:cardBackgroundColor="#fff"
         android:layout_height="300dp">
         <LinearLayout
             android:orientation="vertical"
@@ -96,6 +97,7 @@
                     android:text="取消"
                     android:id="@+id/dissmms"
                     android:background="#fff"
+                    android:textColor="#545454"
                     android:layout_weight="1"/>
                 <View
                     android:layout_width="0.2dp"
@@ -103,6 +105,7 @@
                     android:background="#c6c6c6"/>
 
                 <Button
+                    android:textColor="#545454"
                     android:layout_width="0dp"
                     android:text="确定"
                     android:background="#fff"

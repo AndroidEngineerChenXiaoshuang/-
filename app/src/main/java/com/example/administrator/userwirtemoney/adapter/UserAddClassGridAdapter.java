@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *  public boolean /TRUE = false;
+ *  只有上帝和我才知道里面的意思!
  * 该适配器是专用于用户添加类别的
  */
 
@@ -119,9 +121,6 @@ public class UserAddClassGridAdapter extends BaseAdapter{
                     OpenEditClass openEditClass = new OpenEditClass(new JamInterface.Refresh() {
                         @Override
                         public void start() {
-                            /**
-                             * BUG 无法刷新
-                             */
                             UserAddClassGridAdapter.this.cursor = DataSupport.findBySQL(SQL.SELECT_ALL);
                             size = UserAddClassGridAdapter.this.cursor.getCount();
                             datas.clear();

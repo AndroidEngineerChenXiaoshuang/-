@@ -31,7 +31,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="请输入类别名称"
+                    android:text="请编辑类别名称"
                     android:id="@+id/date_text"
                     android:textSize="22dp"
                     android:textColor="#0093dd"/>
@@ -47,14 +47,15 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1">
+
                 <EditText
                     android:hint="最多支持4个字"
                     android:enabled="true"
+                    android:textColor="#4d4d4d"
+                    android:textColorHint="#676767"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="4"
-                    android:textColor="#4d4d4d"
-                    android:textColorHint="#676767"
                     android:maxLines="1"
                     android:id="@+id/edit_info"
                     android:textSize="18dp"/>
@@ -68,12 +69,13 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="0dp">
-                <Button
-                    android:textColor="#4d4d4d"
+                <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="取消"
                     android:id="@+id/dissmms"
+                    android:gravity="center"
+                    android:textColor="#4d4d4d"
                     android:background="#fff"
                     android:layout_weight="1"/>
                 <View
@@ -81,12 +83,13 @@
                     android:layout_height="match_parent"
                     android:background="#c6c6c6"/>
 
-                <Button
+                <TextView
                     android:textColor="#4d4d4d"
+                    android:gravity="center"
                     android:layout_width="0dp"
                     android:text="确定"
                     android:background="#fff"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:id="@+id/sure" />
             </LinearLayout>

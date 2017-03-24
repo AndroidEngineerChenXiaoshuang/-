@@ -16,13 +16,13 @@ import com.example.administrator.userwirtemoney.Application.MyApplication;
 import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.R;
 import com.example.administrator.userwirtemoney.WriteMoneyActivity;
-import com.example.administrator.userwirtemoney.litepal.SQL;
 import com.example.administrator.userwirtemoney.litepal.userClassInfo;
 
 import org.litepal.crud.DataSupport;
 
 /**
  *  这是一个用来打开windowPopUpwindow的工具类
+ *  只有上帝和我才知道里面的意思!
  */
 public class OpenEditClass {
 
@@ -40,11 +40,40 @@ public class OpenEditClass {
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setFocusable(true);
-        popupWindow.setAnimationStyle(R.style.EditClassAnimation);
+        popupWindow.setAnimationStyle(R.style.ContentAnimation);
         popupWindow.showAtLocation(view, Gravity.CENTER,0,0);
         item1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popupWindow.dismiss();
+                View root = LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.edit_class_name,null,false);
+                popupWindow.setContentView(root);
+                final TextView textView = (TextView) root.findViewById(R.id.edit_info);
+                textView.setText(lastClassName);
+                TextView sure = (TextView) root.findViewById(R.id.sure);
+                TextView dismms = (TextView) root.findViewById(R.id.dissmms);
+                sure.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(textView.getText().toString().length()>0){
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put("name",textView.getText().toString());
+                            DataSupport.updateAll(userClassInfo.class,contentValues,"position=?",position+1+"");
+                            refresh.start();
+                        }else{
+                            Toast.makeText(view.getContext(),"类别名称不能为空",Toast.LENGTH_SHORT).show();
+                        }
+                        popupWindow.dismiss();
+                    }
+                });
+                dismms.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+                popupWindow.setAnimationStyle(R.style.ContentAnimation);
+                popupWindow.showAtLocation(view,Gravity.CENTER,0,0);
 
             }
         });
@@ -98,7 +127,7 @@ public class OpenEditClass {
                     }
                 });
                 popupWindow.setContentView(root);
-                popupWindow.setAnimationStyle(R.style.EditClassAnimation);
+                popupWindow.setAnimationStyle(R.style.ContentAnimation);
                 popupWindow.setFocusable(true);
                 popupWindow.showAtLocation(view,Gravity.CENTER,0,0);
             }
