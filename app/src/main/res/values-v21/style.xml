@@ -17,5 +17,9 @@
         <item name="android:windowEnterAnimation">@anim/addclass_exitanimation</item>
         <item name="android:windowExitAnimation">@anim/addclass_startanimation</item>
     </style>
+    <style name="EditClassAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/edit_start</item>
+        <item name="android:windowExitAnimation">@anim/edit_end</item>
+    </style>
 
 </resources>

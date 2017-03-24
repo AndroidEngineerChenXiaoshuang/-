@@ -30,6 +30,13 @@ public class JamInterface {
     public interface getClassNameInfo {
         void getInfo(String info);
     }
+
+    /**
+     * 该接口用于通知gridView进行刷新
+     */
+    public interface Refresh{
+        void start();
+    }
 }
 
 

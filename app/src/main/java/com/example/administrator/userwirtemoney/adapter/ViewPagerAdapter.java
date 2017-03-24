@@ -1,13 +1,17 @@
 package com.example.administrator.userwirtemoney.adapter;
 
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import com.example.administrator.userwirtemoney.Application.MyApplication;
+import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.R;
 import com.example.administrator.userwirtemoney.WriteMoneyActivity;
+
+import java.util.ArrayList;
 
 
 /**
@@ -39,17 +43,23 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        View root = LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.grid_layout,container,false);
-        GridView gridView = (GridView) root.findViewById(R.id.grid);
+    public Object instantiateItem(ViewGroup container, final int position) {
+        final View max_root = LayoutInflater.from(MyApplication.getmContext()).inflate(R.layout.grid_layout,container,false);
+        final GridView gridView = (GridView) max_root.findViewById(R.id.grid);
         if(position!=3){
             BaseAdapterGrid baseAdapterGrid = new BaseAdapterGrid(position);
             gridView.setAdapter(baseAdapterGrid);
         }else{
-            UserAddClassGridAdapter userAddClassGridAdapter = new UserAddClassGridAdapter(writeMoneyActivity);
+            final UserAddClassGridAdapter userAddClassGridAdapter = new UserAddClassGridAdapter(writeMoneyActivity, new JamInterface.Refresh() {
+                @Override
+                public void start() {
+
+                }
+
+            });
             gridView.setAdapter(userAddClassGridAdapter);
         }
-        container.addView(root);
-        return root;
+        container.addView(max_root);
+        return max_root;
     }
 }

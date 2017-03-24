@@ -16,6 +16,7 @@ import com.example.administrator.userwirtemoney.Application.MyApplication;
 import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.R;
 import com.example.administrator.userwirtemoney.Util.OpenAddclassName;
+import com.example.administrator.userwirtemoney.Util.OpenEditClass;
 import com.example.administrator.userwirtemoney.WriteMoneyActivity;
 import com.example.administrator.userwirtemoney.litepal.SQL;
 import com.example.administrator.userwirtemoney.litepal.userClassInfo;
@@ -39,8 +40,10 @@ public class UserAddClassGridAdapter extends BaseAdapter{
     public  SharedPreferences sharedPreferences = MyApplication.getmContext().getSharedPreferences("user_selected", Context.MODE_PRIVATE);
     public SharedPreferences.Editor editor = sharedPreferences.edit();
     public List<Boolean> isSelecteds = new ArrayList<>();
+    public JamInterface.Refresh refresh;
 
-    public UserAddClassGridAdapter(WriteMoneyActivity writeMoneyActivity){
+    public UserAddClassGridAdapter(WriteMoneyActivity writeMoneyActivity,JamInterface.Refresh refresh){
+        this.refresh = refresh;
         cursor = DataSupport.findBySQL(SQL.SELECT_ALL);
         size = cursor.getCount();
         layoutInflater = LayoutInflater.from(MyApplication.getmContext());
@@ -59,6 +62,8 @@ public class UserAddClassGridAdapter extends BaseAdapter{
                 }
             }
         }
+        cursor.close();
+
     }
 
     @Override
@@ -84,10 +89,6 @@ public class UserAddClassGridAdapter extends BaseAdapter{
         final int is_seleced = sharedPreferences.getInt("selected",0);
         final int selected_pager = sharedPreferences.getInt("selectedType",0);
         if(is_seleced==position&&selected_pager==3&&size>0){
-//            imageView.setImageResource(R.drawable.custom_categories2);
-//            imageView.setBackgroundResource(R.drawable.gridview_back);
-//            textView.setText(datas.get(position));
-//            MyApplication.setRoot(root);
             setSelected(root,position,imageView,textView);
         }else if(size==0){
             setAddClass(root,imageView,textView);
@@ -108,7 +109,43 @@ public class UserAddClassGridAdapter extends BaseAdapter{
             root.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+                    String info = null;
+                    int whereId = position + 1;
+                    final Cursor cursor = DataSupport.findBySQL("select name from userClassInfo where position="+whereId+";");
+                    if(cursor.moveToNext()){
+                        Log.v("Jam",cursor.getString(cursor.getColumnIndex("name")));
+                        info = cursor.getString(cursor.getColumnIndex("name"));
+                    }
+                    OpenEditClass openEditClass = new OpenEditClass(new JamInterface.Refresh() {
+                        @Override
+                        public void start() {
+                            /**
+                             * BUG 无法刷新
+                             */
+                            UserAddClassGridAdapter.this.cursor = DataSupport.findBySQL(SQL.SELECT_ALL);
+                            size = UserAddClassGridAdapter.this.cursor.getCount();
+                            datas.clear();
+                            while(UserAddClassGridAdapter.this.cursor.moveToNext()){
+                                datas.add(UserAddClassGridAdapter.this.cursor.getString(UserAddClassGridAdapter.this.cursor.getColumnIndex("name")));
+                            }
+                            isSelecteds.clear();
+                            if(size==0){
+                                isSelecteds.add(false);
+                            }else{
+                                for(int i=0;i<=size;i++){
+                                    if(i==size){
+                                        isSelecteds.add(false);
+                                    }else{
+                                        isSelecteds.add(true);
+                                    }
+                                }
+                            }
+                            notifyDataSetChanged();
+                        }
 
+                    });
+                    openEditClass.openEdit(v,position,info,writeMoneyActivity);
+                    cursor.close();
                     return false;
                 }
             });
@@ -194,6 +231,7 @@ public class UserAddClassGridAdapter extends BaseAdapter{
                                 editor.putInt("selected",size-1);
                                 editor.putInt("selectedType",3);
                                 editor.apply();
+                                cursor.close();
                                 notifyDataSetChanged();
                             }
                         }else{
