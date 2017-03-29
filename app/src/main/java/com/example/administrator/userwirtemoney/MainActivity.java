@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -17,25 +16,27 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.administrator.userwirtemoney.Application.MyApplication;
+import com.example.administrator.userwirtemoney.ApplicationTest.test;
 import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.Util.HttpUtilRequest;
 import com.example.administrator.userwirtemoney.Util.PhtoUriSax;
-import com.example.administrator.userwirtemoney.adapter.RecyclerViewAdapter;
+import com.example.administrator.userwirtemoney.adapter.childViewAdd;
 
 import org.litepal.tablemanager.Connector;
 
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int CHOOSE_PHOTO = 2;
 
+    public static final int START_WRITE_MONEYINFO_ACTIVITY = 3;
+
     public SharedPreferences sharedPreferences;
 
     public SharedPreferences.Editor editor;
@@ -83,9 +86,11 @@ public class MainActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView ;
 
-    public RecyclerViewAdapter recyclerViewAdapter;
-
     public FloatingActionButton addButton;
+
+    public NestedScrollView nestedScrollView;
+
+    public LinearLayout childLinear;
 
     public Intent startWriteMoneyActivity;
 
@@ -93,8 +98,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        test.refreshPosition();
         Connector.getDatabase();//初始化数据库
+        nestedScrollView = (NestedScrollView) findViewById(R.id.nestedView);
+        childLinear = (LinearLayout) findViewById(R.id.childView);
         toolbar = (Toolbar) findViewById(R.id.toolbarId);
+        initData();
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null){
@@ -148,11 +157,15 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(startWriteMoneyActivity);
+                startActivityForResult(startWriteMoneyActivity,START_WRITE_MONEYINFO_ACTIVITY);
             }
         });
     }
 
+
+    public void initData(){
+        childViewAdd.refershView(childLinear);
+    }
 
     //设置打开相机弹出的提示框
     @Override
@@ -182,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 });
                 builder.setMessage("选择相册或者是拍照来设置您的主题");
@@ -279,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                     if(Build.VERSION.SDK_INT>=19){
                         PhtoUriSax.startSaxUri(new JamInterface.photoInterface(){
                             @Override
-                            public void finshed(String filePath) {
+                            public void finshed(String filePath)  {
                                 writeBitmap(filePath);
                             }
                         },data);
@@ -291,6 +303,13 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }
+                }
+                break;
+            case START_WRITE_MONEYINFO_ACTIVITY:
+                if(resultCode==RESULT_OK){
+                    childViewAdd.refershView(childLinear);
+                }else if(resultCode==RESULT_CANCELED){
+
                 }
                 break;
             default:

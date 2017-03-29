@@ -1,49 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topLayout"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:id="@+id/top_info"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:id="@+id/date"
+            android:text="2017年7月5日"
+            android:textSize="15dp"
+            android:textColor="#858585"/>
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/money"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center"
+            android:textColor="#858585"
+            android:text="支出:51.00 收入0.00"/>
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/centerInfo">
-        <RelativeLayout
-            android:layout_width="match_parent"
+        android:padding="10dp"
+        android:id="@+id/layout_bottom"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:padding="7dp"
+            android:layout_width="40dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="40dp"
+            android:id="@+id/grid_img_type"
+            android:background="@drawable/gridview_back"/>
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"
+            android:layout_centerVertical="true"
+            android:text="test"
+            android:textColor="#2a2a2a"
+            android:id="@+id/info_name"
+            android:layout_toRightOf="@+id/grid_img_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/money_info"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="-51.00"
+            android:textColor="#858585"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lines3">
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:scaleType="centerCrop"
-                android:id="@+id/typeImg"
-                android:layout_centerHorizontal="true"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="娱乐"
-                android:textSize="16dp"
-                android:layout_centerVertical="true"
-                android:textColor="#ababab"
-                android:id="@+id/text_yule"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/typeImg"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="650.00"
-                android:textSize="15dp"
-                android:id="@+id/money"
-                android:layout_centerVertical="true"
-                android:textColor="#ababab"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/text_yule"/>
-        </RelativeLayout>
-        <View
-            android:layout_below="@id/lines3"
-            android:layout_width="1dp"
-            android:layout_height="50dp"
-            android:background="#ababab"
-            android:layout_centerHorizontal="true"/>
+            android:textSize="15dp"/>
     </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:background="#e0e0e0"/>
 </LinearLayout>
+
+
+

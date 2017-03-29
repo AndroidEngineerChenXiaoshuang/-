@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:fitsSystemWindows="true"
-    android:background="#fff"
+    android:background="#e0e0e0"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.administrator.userwirtemoney.MainActivity">
    <android.support.design.widget.CoordinatorLayout
        android:layout_width="match_parent"
        android:fitsSystemWindows="true"
+       android:id="@+id/coord"
        android:layout_height="match_parent">
       <android.support.design.widget.AppBarLayout
           android:layout_width="match_parent"
@@ -45,25 +46,28 @@
       </android.support.design.widget.AppBarLayout>
 
 
-
-      <android.support.v7.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          app:layout_behavior="@string/appbar_scrolling_view_behavior"
-          android:id="@+id/recycler">
-      </android.support.v7.widget.RecyclerView>
-
       <android.support.design.widget.FloatingActionButton
-          android:layout_width="120dp"
-          android:layout_height="120dp"
-          app:layout_anchorGravity="bottom|center"
-          app:layout_anchor="@id/appBar"
-          app:backgroundTint="#fff"
-          app:elevation="0dp"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:layout_gravity="bottom|right"
+          app:backgroundTint="#ffffff"
+          app:elevation="8dp"
           android:id="@+id/add_info"
           android:layout_margin="16dp"
           android:src="@drawable/add"/>
 
+      <android.support.v4.widget.NestedScrollView
+          android:layout_width="match_parent"
+          android:id="@+id/nestedView"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          android:layout_height="match_parent">
+          <LinearLayout
+              android:id="@+id/childView"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+          </LinearLayout>
+      </android.support.v4.widget.NestedScrollView>
 
    </android.support.design.widget.CoordinatorLayout>
 

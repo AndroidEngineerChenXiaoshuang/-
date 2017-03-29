@@ -109,7 +109,8 @@ public class OpenEditClass {
                                 editor.putInt("selected",is_seleced-1);
                                 editor.apply();
                             }else if(is_seleced==position){
-                                editor.putInt("selectedType",4);
+                                editor.putInt("selectedType",0);
+                                editor.putInt("selected",0);
                                 editor.apply();
                             }
                         }

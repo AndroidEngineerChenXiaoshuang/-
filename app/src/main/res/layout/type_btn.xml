@@ -14,6 +14,7 @@
         android:id="@+id/openDate"
         android:textColor="#757575"
         android:background="@drawable/bg_login"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="30dp"
