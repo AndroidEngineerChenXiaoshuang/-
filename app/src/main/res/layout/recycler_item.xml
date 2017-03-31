@@ -6,7 +6,7 @@
     android:background="#fff"
     android:layout_width="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/top_info"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -16,27 +16,35 @@
         android:paddingRight="10dp"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:id="@+id/date"
             android:text="2017年7月5日"
+            android:maxLines="1"
             android:textSize="15dp"
             android:textColor="#858585"/>
+
         <TextView
-            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
             android:id="@+id/money"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right|center"
             android:textColor="#858585"
-            android:text="支出:51.00 收入0.00"/>
-    </LinearLayout>
+            android:text="支出:0.00 收入0.00"
+            android:layout_alignBottom="@+id/date"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:padding="10dp"
+        android:background="@drawable/layout_bg_login"
         android:id="@+id/layout_bottom"
         android:layout_height="wrap_content">
         <ImageView
@@ -48,23 +56,33 @@
             android:background="@drawable/gridview_back"/>
         <TextView
             android:layout_marginLeft="15dp"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:layout_centerVertical="true"
             android:text="test"
+            android:maxLines="1"
             android:textColor="#2a2a2a"
             android:id="@+id/info_name"
             android:layout_toRightOf="@+id/grid_img_type"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/money_info"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:text="-51.00"
+            android:text="0.00"
             android:textColor="#858585"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"/>
+            android:textSize="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="15dp"
+            android:textColor="#858585"
+            android:text="-"
+            android:layout_toLeftOf="@+id/money_info"/>
     </RelativeLayout>
 
     <View

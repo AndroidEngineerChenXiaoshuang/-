@@ -15,12 +15,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.administrator.userwirtemoney.Util.NumberThink;
+import com.example.administrator.userwirtemoney.Util.SaxMoney;
 import com.example.administrator.userwirtemoney.Util.openDatepopUpWindow;
 import com.example.administrator.userwirtemoney.adapter.ViewPagerAdapter;
 import com.example.administrator.userwirtemoney.litepal.saveInfo;
 import org.litepal.crud.DataSupport;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.administrator.userwirtemoney.EditMoenyInfoActivity.LOOKING_MONEY_INFO;
+import static com.example.administrator.userwirtemoney.EditMoenyInfoActivity.WRITE_MONEY_INFO;
 
 /**
  * Created by Administrator on 2017/3/14 0014.
@@ -45,6 +49,8 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
     public static final int OPEND_EDITACTIVITY = 0;
     public static final int COLOR = 0XFF007CA2;
     public static final int TEXTCOLOR = 0XFF757575;
+    public int type = 0;
+    public int position;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +58,6 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.write_money);
         buttons_number = new ArrayList<>();
         iniDate();
-
 
     }
     public void iniDate(){
@@ -87,7 +92,14 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(new onPagerListener());
         openEditInfo.setOnClickListener(this);
+        Intent intent = getIntent();
+        type = intent.getIntExtra("type",0);
+        if(type==LOOKING_MONEY_INFO){
+            position = intent.getIntExtra("position",0);
+            openEditInfo.setVisibility(View.GONE);
+        }
     }
+
 
     @Override
     public void onClick(View v) {
@@ -96,12 +108,18 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
         }else if(v.getId()==R.id.the_money_info){
             Intent intent = new Intent(this,EditMoenyInfoActivity.class);
             Bundle bundle = new Bundle();
+            bundle.putInt("type",WRITE_MONEY_INFO);
             bundle.putString("date_info",openDate_btn.getText().toString());
             bundle.putString("numberInfo",numberText.getText().toString());
             intent.putExtra("data",bundle);
             startActivityForResult(intent,OPEND_EDITACTIVITY);
         }else if(v.getId()==R.id.finish){
-               finishInfo();
+            if(type==LOOKING_MONEY_INFO){
+                updateInfo();
+                finish();
+            }else{
+                finishInfo();
+            }
         }else{
             number_info = NumberThink.send(v,number_info,numberText);
         }
@@ -138,16 +156,30 @@ public class WriteMoneyActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onBackPressed() {
-        int position = getSharedPreferences("user_selected",MODE_PRIVATE).getInt("position",0);
-        Log.v("Jam",position+"");
-        Cursor cursor = DataSupport.findBySQL("select * from saveInfo where postion="+position);
-        if(cursor.moveToNext()){
-            if(cursor.getString(cursor.getColumnIndex("date"))==null){
-                DataSupport.deleteAll(saveInfo.class,"postion=?",position+"");
+        if(type==LOOKING_MONEY_INFO){
+            updateInfo();
+            setResult(RESULT_OK);
+        }else{
+            int position = getSharedPreferences("user_selected",MODE_PRIVATE).getInt("position",0);
+            Log.v("Jam",position+"");
+            Cursor cursor = DataSupport.findBySQL("select * from saveInfo where postion="+position);
+            if(cursor.moveToNext()){
+                if(cursor.getString(cursor.getColumnIndex("date"))==null){
+                    DataSupport.deleteAll(saveInfo.class,"postion=?",position+"");
+                }
             }
+            setResult(RESULT_CANCELED);
         }
-        setResult(RESULT_CANCELED);
+
         super.onBackPressed();
+    }
+
+    public void updateInfo(){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("selecttype",getSharedPreferences("user_selected",MODE_PRIVATE).getInt("selectedType",0));
+        contentValues.put("selected",getSharedPreferences("user_selected",MODE_PRIVATE).getInt("selected",0));
+        contentValues.put("moneySize",numberText.getText().toString());
+        DataSupport.updateAll(saveInfo.class,contentValues,"postion=?",position+"");
     }
 
     public class onPagerListener implements ViewPager.OnPageChangeListener{

@@ -23,4 +23,19 @@ public class SaxMoney {
         }
         return number;
     }
+
+    public static int sax_remove(String number){
+        String[] number2 = number.split("\\.");
+        int money = Integer.parseInt(number2[0]);
+        return money;
+    }
+
+    public static int sax_removeSum(String number){
+        String[] info1 = number.split(" ");
+        String[] info2 = info1[0].split(":");
+        String[] info3 = info2[1].split("\\.");
+        int money = Integer.parseInt(info3[0]);
+        return money;
+    }
+
 }

@@ -16,10 +16,15 @@
             android:textColor="#a6a6a6"
             android:text="03月27日"
             android:id="@+id/date_info"/>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/clickEdit"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
         <RelativeLayout
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
             <ImageView
@@ -31,6 +36,7 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"/>
             <TextView
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
@@ -43,12 +49,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:textSize="16dp"
+                android:layout_alignParentRight="true"
                 android:id="@+id/edit_MoneyInfo"
                 android:textColor="#a6a6a6"
                 android:text="-0.00"/>
+
         </RelativeLayout>
+        <ImageView
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:src="@drawable/click_img"
+            android:id="@+id/right_icon"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+    </LinearLayout>
+
 
     </LinearLayout>
     <View

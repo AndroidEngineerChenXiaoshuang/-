@@ -1,6 +1,8 @@
 package com.example.administrator.userwirtemoney;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -23,7 +26,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,12 +40,12 @@ import com.example.administrator.userwirtemoney.Myinterface.JamInterface;
 import com.example.administrator.userwirtemoney.Util.HttpUtilRequest;
 import com.example.administrator.userwirtemoney.Util.PhtoUriSax;
 import com.example.administrator.userwirtemoney.adapter.childViewAdd;
-
 import org.litepal.tablemanager.Connector;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.PublicKey;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -164,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void initData(){
-        childViewAdd.refershView(childLinear);
+        childViewAdd.refershView(childLinear, this);
     }
 
     //设置打开相机弹出的提示框
@@ -307,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case START_WRITE_MONEYINFO_ACTIVITY:
                 if(resultCode==RESULT_OK){
-                    childViewAdd.refershView(childLinear);
+                    childViewAdd.refershView(childLinear,this);
                 }else if(resultCode==RESULT_CANCELED){
 
                 }
@@ -328,5 +331,26 @@ public class MainActivity extends AppCompatActivity {
             editor.putString(IMG_URI,null);
         }
         editor.apply();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("确定退出吗?");
+//        builder.setIcon()
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MainActivity.this.finish();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
     }
 }
